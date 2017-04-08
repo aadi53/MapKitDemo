@@ -34,5 +34,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationUsageDescription</key>
+	<string>MapView Demo needs your location access permission.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>MapViewDemo needs your location</string>
 </dict>
 </plist>

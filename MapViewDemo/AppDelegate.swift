@@ -7,15 +7,21 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var locationManager : CLLocationManager?
+    
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        enableLocationService()
+        
         return true
     }
 
@@ -41,6 +47,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    
 }
+
+extension AppDelegate : CLLocationManagerDelegate {
+    func enableLocationService(){
+        
+        locationManager = CLLocationManager()
+        locationManager!.delegate = self
+        
+        locationManager!.desiredAccuracy = 100
+         
+        locationManager!.startUpdatingLocation()
+        
+        //locationManager?.startMonitoringSignificantLocationChanges()
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Updated ==>> \(locations)")
+        locationManager!.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error ==>> \(error)")
+    }
+    
+}
+
+
+
+
+
+
 
